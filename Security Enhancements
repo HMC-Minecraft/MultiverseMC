@@ -1,0 +1,20 @@
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class SecurityManager {
+
+    public static String encryptPassword(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(password.getBytes());
+            return new String(hash);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static boolean validateAuthentication(String username, String password) {
+        // Implement authentication validation logic
+    }
+}
