@@ -1,5 +1,4 @@
-
-# MultiverseMC ![HMC_STUDIOS](https://github.com/Suffix30/MultiverseMC/assets/49195535/b0179eca-7811-4267-8723-3e4c78c494a0) MultiServer Connections
+![HMC_STUDIOS](https://github.com/Suffix30/MultiverseMC/assets/49195535/1c43bf62-2a75-4477-b245-d2ad358f3c58)
 
 # Summary:
 
