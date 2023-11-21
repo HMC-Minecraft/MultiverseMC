@@ -1,0 +1,15 @@
+import java.io.IOException;
+
+public class ChatListener implements PlayerListener {
+
+    @Override
+    public void onPlayerChat(PlayerChatEvent event) throws IOException {
+        Player player = event.getPlayer();
+        String message = event.getMessage();
+
+        // Broadcast message to all connected servers
+        for (MinecraftServer server : ServerConnector.getServers()) {
+            server.broadcastMessage(player.getName() + ": " + message);
+        }
+    }
+}

@@ -1,0 +1,16 @@
+public class PlayerMovementListener implements PlayerListener {
+
+    @Override
+    public void onPlayerMove(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        Location fromLocation = event.getFrom();
+        Location toLocation = event.getTo();
+
+        if (fromLocation.getWorld() != toLocation.getWorld()) {
+            String serverName = toLocation.getWorld().getName();
+            MinecraftServer server = ServerConnector.getServer(serverName);
+
+            player.teleport(server.spawnPosition);
+        }
+    }
+}

@@ -1,0 +1,21 @@
+import java.io.IOException;
+import java.net.Socket;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+public class ServerConnector {
+
+    private static final Map<String, MinecraftServer> servers = new ConcurrentHashMap<>();
+
+    public static void connectToServer(String serverName, String serverAddress) throws IOException {
+        MinecraftServer server = new MinecraftServer(serverName, serverAddress);
+        try (Socket socket = new Socket(serverAddress, 25565)) {
+            server.start(socket);
+            servers.put(serverName, server);
+        }
+    }
+
+    public static MinecraftServer getServer(String serverName) {
+        return servers.get(serverName);
+    }
+}

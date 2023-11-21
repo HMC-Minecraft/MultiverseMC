@@ -1,0 +1,17 @@
+public class PlayerPermissionManager {
+
+    private static final Map<String, PlayerPermissions> permissionsMap = new ConcurrentHashMap<>();
+
+    public void setPlayerPermission(String playerName, String permission, boolean granted) {
+        PlayerPermissions permissions = permissionsMap.computeIfAbsent(playerName, k -> new PlayerPermissions());
+        permissions.setPermission(permission, granted);
+    }
+
+    public boolean hasPlayerPermission(String playerName, String permission) {
+        PlayerPermissions permissions = permissionsMap.get(playerName);
+        if (permissions != null) {
+            return permissions.hasPermission(permission);
+        }
+        return false;
+    }
+}

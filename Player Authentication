@@ -1,0 +1,24 @@
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+public class PlayerAuthenticator {
+
+    private static final Map<String, PlayerAccount> accounts = new ConcurrentHashMap<>();
+
+    public static boolean authenticatePlayer(String username, String password) {
+        PlayerAccount account = accounts.get(username);
+        if (account == null) {
+            return false;
+        }
+
+        return account.getPassword().equals(password);
+    }
+
+    public static void createPlayerAccount(String username, String password) {
+        accounts.put(username, new PlayerAccount(username, password));
+    }
+
+    public static PlayerAccount getPlayerAccount(String username) {
+        return accounts.get(username);
+    }
+}

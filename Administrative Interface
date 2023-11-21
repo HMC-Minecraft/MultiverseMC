@@ -1,0 +1,5 @@
+public class AdministrativeInterface {
+
+    private static final MinecraftServer server;
+
+    public AdministrativeInterface(MinecraftServer

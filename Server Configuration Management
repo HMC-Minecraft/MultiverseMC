@@ -1,0 +1,20 @@
+public class ServerConfigurationManager {
+
+    private static final MinecraftServer server;
+
+    public ServerConfigurationManager(MinecraftServer server) {
+        this.server = server;
+    }
+
+    public void setServerSpawnPosition(Location spawnPosition) {
+        server.setSpawnPosition(spawnPosition);
+    }
+
+    public void setServerWorldName(String worldName) {
+        server.setWorldName(worldName);
+    }
+
+    public void setServerMaxPlayers(int maxPlayers) {
+        server.setMaxPlayers(maxPlayers);
+    }
+}

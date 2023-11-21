@@ -1,0 +1,20 @@
+public class NetworkStatusMonitor {
+
+    private static final Map<String, MinecraftServer> servers = ServerConnector.getServers();
+
+    public void monitorNetworkStatus() {
+        while (true) {
+            for (MinecraftServer server : servers.values()) {
+                if (!server.isConnected()) {
+                    System.out.println("Server " + server.getName() + " is down.");
+                }
+            }
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}

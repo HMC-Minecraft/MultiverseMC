@@ -1,0 +1,35 @@
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class PlayerDataManager {
+
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/multiversemc";
+    private static final String DATABASE_USERNAME = "root";
+    private static final String DATABASE_PASSWORD = "password";
+
+    public static void savePlayerData(Player player) throws IOException, SQLException {
+        String playerData = player.serialize();
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD)) {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO player_data (player_name, player_data) VALUES (?, ?)");
+            statement.setString(1, player.getName());
+            statement.setString(2, playerData);
+            statement.executeUpdate();
+        }
+    }
+
+    public static String loadPlayerData(String playerName) throws IOException, SQLException {
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD)) {
+            PreparedStatement statement = connection.prepareStatement("SELECT player_data FROM player_data WHERE player_name = ?");
+            statement.setString(1, playerName);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("player_data");
+            }
+        }
+        return null;
+    }
+}
