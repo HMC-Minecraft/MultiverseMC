@@ -1,0 +1,11 @@
+public class EconomyManager {
+
+    public void transferBalance(UUID senderUUID, UUID receiverUUID, double amount) {
+        if (getPlayerBalance(senderUUID) >= amount) {
+            removeBalance(senderUUID, amount);
+            addBalance(receiverUUID, amount);
+        } else {
+            System.out.println("Insufficient funds for transfer.");
+        }
+    }
+}

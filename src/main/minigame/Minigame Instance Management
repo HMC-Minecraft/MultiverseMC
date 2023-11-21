@@ -1,0 +1,19 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class MinigameManager {
+
+    private static final Map<String, MinigameInstance> minigameInstances = new HashMap<>();
+
+    public void createMinigameInstance(String minigameName) {
+        minigameInstances.put(minigameName, new MinigameInstance(minigameName));
+    }
+
+    public void removeMinigameInstance(String minigameName) {
+        minigameInstances.remove(minigameName);
+    }
+
+    public MinigameInstance getMinigameInstance(String minigameName) {
+        return minigameInstances.get(minigameName);
+    }
+}

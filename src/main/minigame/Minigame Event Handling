@@ -1,0 +1,31 @@
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+
+public class MinigameEventHandler implements Listener {
+
+    private final MinigameManager minigameManager;
+
+    public MinigameEventHandler(MinigameManager minigameManager) {
+        this.minigameManager = minigameManager;
+    }
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        // Join the player to an active minigame instance
+        MinigameInstance activeMinigameInstance = minigameManager.getActiveMinigameInstance();
+        if (activeMinigameInstance != null) {
+            activeMinigameInstance.joinPlayer(event.getPlayer());
+        }
+    }
+
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        // Remove the player from any minigame instance they are in
+        MinigameInstance currentMinigameInstance = minigameManager.getPlayersMinigameInstance(event.getPlayer());
+        if (currentMinigameInstance != null) {
+            currentMinigameInstance.leavePlayer(event.getPlayer());
+        }
+    }
+}

@@ -1,0 +1,22 @@
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
+
+public class PluginManagerIntegration {
+
+    private static final PluginManager pluginManager = Bukkit.getPluginManager();
+
+    public void registerEvent(Listener listener) {
+        pluginManager.registerEvents(listener, plugin);
+    }
+
+    public void callPluginMethod(String pluginName, String methodName, Object... args) {
+        Plugin plugin = pluginManager.getPlugin(pluginName);
+        if (plugin != null) {
+            try {
+                plugin.getClass().getMethod(methodName, args.getClass()).invoke(plugin, args);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}

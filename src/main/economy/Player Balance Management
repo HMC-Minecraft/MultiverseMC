@@ -1,0 +1,19 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class EconomyManager {
+
+    private static final Map<UUID, Double> playerBalances = new HashMap<>();
+
+    public double getPlayerBalance(UUID playerUUID) {
+        return playerBalances.getOrDefault(playerUUID, 0.0);
+    }
+
+    public void addBalance(UUID playerUUID, double amount) {
+        playerBalances.put(playerUUID, getPlayerBalance(playerUUID) + amount);
+    }
+
+    public void removeBalance(UUID playerUUID, double amount) {
+        playerBalances.put(playerUUID, getPlayerBalance(playerUUID) - amount);
+    }
+}

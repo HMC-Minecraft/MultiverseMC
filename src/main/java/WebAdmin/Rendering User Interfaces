@@ -1,0 +1,20 @@
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+
+public class AdminUIManager {
+
+    private static final Configuration configuration = new Configuration(Configuration.VERSION_2_3_31);
+
+    public String renderDashboard() throws IOException, TemplateException {
+        Template template = configuration.getTemplate("dashboard.ftl");
+        return template.process(null);
+    }
+
+    public String renderServerConfigPage(String serverName) throws IOException, TemplateException {
+        Template template = configuration.getTemplate("serverConfig.ftl");
+        Map<String, Object> data = new HashMap<>();
+        data.put("serverName", serverName);
+        return template.process(data);
+    }
+}
