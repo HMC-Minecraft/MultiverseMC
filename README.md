@@ -1,4 +1,5 @@
-![HMC_STUDIOS](https://github.com/Suffix30/MultiverseMC/assets/49195535/1c43bf62-2a75-4477-b245-d2ad358f3c58)
+
+![HMC_STUDIOS](https://github.com/Suffix30/MultiverseMC/assets/49195535/92527e2e-f75b-43fb-9179-7a0d9e45c2c5)
 
 # Summary:
 
